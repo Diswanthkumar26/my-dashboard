@@ -163,7 +163,6 @@ export default function AuthAnimatedForm() {
         </motion.div>
       )}
 
-      {/* Animated Letter */}
       <motion.div
         key={mode}
         initial={{ scale: 0.3, rotate: 0, opacity: 1 }}
