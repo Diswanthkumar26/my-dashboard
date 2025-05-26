@@ -16,6 +16,14 @@ export default function App() {
   const toggleSidebar = () => setIsSidebarOpen(prev => !prev);
   const toggleTheme = () => setIsDark(prev => !prev);
 
+    if (isAuthPage) {
+    return (
+      <div className={`min-h-screen w-full ${isDark ? 'bg-black text-white' : 'bg-white text-black'}`}>
+        <AuthAnimatedForm />
+      </div>
+    );
+  }
+
   return (
     <div className={`flex ${isDark ? 'bg-black text-white' : 'bg-white text-black'} min-h-screen`}>
       {!isAuthPage && (
@@ -61,7 +69,6 @@ export default function App() {
         )}
 
         <Routes>
-          <Route path="/" element={<AuthAnimatedForm />} />
           <Route
             path="/dashboard"
             element={
