@@ -30,7 +30,7 @@ export default function App() {
         <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} isDark={isDark} />
       )}
 
-      <div className="flex-1 ml-0 md:ml-64 transition-all duration-300 p-4">
+      <div className="flex-1 ml-12 md:ml-64 transition-all duration-300 p-4">
         {!isAuthPage && (
           <div className="flex justify-between items-center mb-4">
             <div className="flex items-center space-x-4">
