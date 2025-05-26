@@ -8,6 +8,8 @@ export default function AuthAnimatedForm() {
   const [letterDone, setLetterDone] = useState(false);
   const [loading, setLoading] = useState(true);
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('');
   const [emailError, setEmailError] = useState('');
   const navigate = useNavigate();
 
@@ -22,7 +24,7 @@ export default function AuthAnimatedForm() {
       try {
         const { token } = JSON.parse(tokenData);
         const response = await axios.get('/api/validate-token', {
-          headers: { Authorization: `Bearer ${token}` }
+          headers: { Authorization: `Bearer ${token}` },
         });
 
         if (response.data.valid) {
@@ -44,12 +46,14 @@ export default function AuthAnimatedForm() {
   useEffect(() => {
     setLetterDone(false);
     setEmail('');
+    setPassword('');
+    setUsername('');
     setEmailError('');
   }, [mode]);
 
   const validateEmail = (value) => {
     const gmailPattern = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
-    return gmailPattern.test(value) ? '' : 'Enter a valid email';
+    return gmailPattern.test(value) ? '' : 'Enter a valid Gmail address';
   };
 
   const handleSubmit = () => {
@@ -74,20 +78,20 @@ export default function AuthAnimatedForm() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-900 text-white relative overflow-hidden">
+    <div className="flex items-center justify-center h-screen w-screen bg-gradient-to-br from-indigo-900 to-gray-900 text-white relative overflow-hidden">
       {letterDone && (
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="w-80 p-8 rounded-lg bg-gray-800 shadow-lg relative z-20"
+          className="w-full max-w-sm p-8 rounded-lg bg-gray-800 shadow-2xl z-20 relative"
         >
           <motion.h2
             key={mode}
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className="text-2xl font-semibold mb-6 text-center"
+            className="text-3xl font-bold mb-6 text-center"
           >
             {mode === 'login' ? 'Login' : 'Sign Up'}
           </motion.h2>
@@ -97,6 +101,8 @@ export default function AuthAnimatedForm() {
               <motion.input
                 key="username"
                 type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 placeholder="Username"
                 className="w-full mb-4 p-3 rounded bg-gray-700 focus:outline-none"
                 initial={{ opacity: 0, y: -10 }}
@@ -117,20 +123,19 @@ export default function AuthAnimatedForm() {
             }}
             className="w-full mb-2 p-3 rounded bg-gray-700 focus:outline-none"
           />
-          {emailError && (
-            <p className="text-red-500 text-sm mb-2">{emailError}</p>
-          )}
+          {emailError && <p className="text-red-400 text-sm mb-2">{emailError}</p>}
 
           <input
             type="password"
             placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             className="w-full mb-6 p-3 rounded bg-gray-700 focus:outline-none"
           />
 
           <button
-            type="submit"
-            className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 rounded text-white font-semibold"
             onClick={handleSubmit}
+            className="w-full py-3 bg-indigo-600 hover:bg-indigo-700 rounded text-white font-semibold"
           >
             {mode === 'login' ? 'Login' : 'Sign Up'}
           </button>
@@ -140,8 +145,7 @@ export default function AuthAnimatedForm() {
               <>
                 Don’t have an account?{' '}
                 <button
-                  type="button"
-                  className="underline hover:text-indigo-400"
+                  className="underline hover:text-indigo-300"
                   onClick={() => setMode('signup')}
                 >
                   Sign Up
@@ -151,8 +155,7 @@ export default function AuthAnimatedForm() {
               <>
                 Already have an account?{' '}
                 <button
-                  type="button"
-                  className="underline hover:text-indigo-400"
+                  className="underline hover:text-indigo-300"
                   onClick={() => setMode('login')}
                 >
                   Login
@@ -162,16 +165,15 @@ export default function AuthAnimatedForm() {
           </div>
         </motion.div>
       )}
-
       <motion.div
         key={mode}
         initial={{ scale: 0.3, rotate: 0, opacity: 1 }}
-        animate={{ scale: 1.5, rotate: 10, opacity: 1 }}
+        animate={{ scale: 1.6, rotate: 10, opacity: 0.06 }}
         transition={{ duration: 2, ease: 'easeInOut' }}
         onAnimationComplete={() => setLetterDone(true)}
-        className="font-extrabold select-none mt-[-6rem] z-10"
+        className="font-extrabold select-none absolute z-10"
         style={{
-          fontSize: '12rem',
+          fontSize: '24rem',
           lineHeight: 1,
           userSelect: 'none',
         }}
