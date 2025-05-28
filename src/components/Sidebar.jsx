@@ -18,7 +18,7 @@ const Sidebar = ({ isOpen, toggleSidebar, isDark }) => {
             <div className="w-10 h-10 flex items-center justify-center font-bold border rounded-full">
               RQ
             </div>
-            <span className="text-lg font-semibold">TxS Console</span>
+            <span className="text-lg font-semibold">RxQ Console</span>
           </div>
         )}
         <button onClick={toggleSidebar}>
