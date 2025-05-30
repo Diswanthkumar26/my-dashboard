@@ -1,16 +1,27 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import {
-  LayoutDashboard, FileText, Folder, Tag, Users,
-  Eye, Clipboard, Edit, Calendar, HelpCircle, Menu, X, Shapes
-} from 'lucide-react';
+  LayoutDashboard,
+  FileText,
+  Folder,
+  Tag,
+  Eye,
+  Clipboard,
+  Calendar,
+  HelpCircle,
+  Menu,
+  X,
+} from "lucide-react";
 
 const Sidebar = ({ isOpen, toggleSidebar, isDark }) => {
-  const linkClass = 'flex items-center gap-3 px-4 py-2 rounded-md hover:bg-purple-700 transition';
+  const linkClass =
+    "flex items-center gap-3 px-4 py-2 rounded-md hover:bg-purple-700 transition";
 
   return (
     <div
       className={`fixed top-0 left-0 z-30 h-full overflow-y-auto shadow-lg transition-all duration-300
-        ${isOpen ? 'w-64' : 'w-16'} ${isDark ? 'bg-black text-white' : 'bg-white text-black'}`}
+        ${isOpen ? "w-64" : "w-16"} ${
+        isDark ? "bg-black text-white" : "bg-white text-black"
+      }`}
     >
       <div className="flex items-center justify-between px-4 py-4">
         {isOpen && (
@@ -31,7 +42,9 @@ const Sidebar = ({ isOpen, toggleSidebar, isDark }) => {
           <LayoutDashboard size={20} /> {isOpen && <span>Dashboard</span>}
         </Link>
 
-        <div className="px-4 text-xs text-gray-400 uppercase">{isOpen && 'Management'}</div>
+        <div className="px-4 text-xs text-gray-400 uppercase">
+          {isOpen && "Management"}
+        </div>
         <Link to="/posts" className={linkClass}>
           <FileText size={20} /> {isOpen && <span>Post Table Info</span>}
         </Link>
@@ -45,26 +58,26 @@ const Sidebar = ({ isOpen, toggleSidebar, isDark }) => {
           <Eye size={20} /> {isOpen && <span>Visitors Info</span>}
         </Link>
 
-        <div className="px-4 text-xs text-gray-400 uppercase">{isOpen && 'Forms'}</div>
+        <div className="px-4 text-xs text-gray-400 uppercase">
+          {isOpen && "Forms"}
+        </div>
         <Link to="/post-form" className={linkClass}>
           <Clipboard size={20} /> {isOpen && <span>Post Form</span>}
         </Link>
-        <Link to="/tag-form" className={linkClass}>
-          <Edit size={20} /> {isOpen && <span>Tag Form</span>}
-        </Link>
-        <Link to="/project-form" className={linkClass}>
-          <Folder size={20} /> {isOpen && <span>Project Form</span>}
-        </Link>
-        <Link to="/category-form" className={linkClass}>
-          <Shapes size={20} /> {isOpen && <span>Category Form</span>}
+        <Link to="/product-form" className={linkClass}>
+          <Clipboard size={20} /> {isOpen && <span>Product Form</span>}
         </Link>
 
-        <div className="px-4 text-xs text-gray-400 uppercase">{isOpen && 'Components'}</div>
+        <div className="px-4 text-xs text-gray-400 uppercase">
+          {isOpen && "Components"}
+        </div>
         <Link to="/calendar" className={linkClass}>
           <Calendar size={20} /> {isOpen && <span>Calendar</span>}
         </Link>
 
-        <div className="px-4 text-xs text-gray-400 uppercase">{isOpen && 'Settings'}</div>
+        <div className="px-4 text-xs text-gray-400 uppercase">
+          {isOpen && "Settings"}
+        </div>
         <Link to="/faq" className={linkClass}>
           <HelpCircle size={20} /> {isOpen && <span>FAQ Page</span>}
         </Link>
